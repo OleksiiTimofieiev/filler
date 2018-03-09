@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:34:49 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/09 18:52:20 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/09 19:14:34 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,7 +176,6 @@ int		subcheck(int i, int j, t_f *f) // big or little, get clear with the bot;
 		}
 		i++;
 	}
-	// ft_printf("%c\n", f->letter1);
 	return (count);
 }
 
@@ -242,17 +241,10 @@ t_coord	*valid_dots(t_f *f)
 		j = 0;
 		while (j < f->m_cols)
 		{
-			if (subcheck(i, j, f) == get_dots_quantity(f))
+			if (subcheck(i, j, f) == get_dots_quantity(f)) // add zone checking;
 			{
-				// index++;
 				iteration_dots(i, j, &head, &current);
-				// current->index = index;
-				// index++; // why not 12; //
-				// index++;
-				// ft_putnbr(current->index);
-			} // le castello: current list + 1.index += 1;
-			//  or keep it in a structure as some iterator;
-			// / if current = 0 index = prev +1 ;
+			}
 			j++;
 		}
 		i++;
