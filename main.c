@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:34:49 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/09 18:10:18 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/09 18:12:24 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,23 +189,23 @@ t_coord	*new_node(int i, int j)
 	return (new);
 }
 
-void	init_list(t_f *f)
-{
-	int i;
-	t_coord *tmp;
+// void	init_list(t_f *f)
+// {
+// 	int i;
+// 	t_coord *tmp;
 
-	tmp = f->list;
-	i = 1;
-	ft_putchar('1');
-	while (tmp)
-	{
-		tmp->index = i;
-		tmp = tmp->next; 
-		i++;
-	}
-	ft_putchar('2');
+// 	tmp = f->list;
+// 	i = 1;
+// 	ft_putchar('1');
+// 	while (tmp)
+// 	{
+// 		tmp->index = i;
+// 		tmp = tmp->next; 
+// 		i++;
+// 	}
+// 	ft_putchar('2');
 
-}
+// }
 
 void	iteration_dots(int i, int j, t_coord **head, t_coord **current)
 {
@@ -243,7 +243,7 @@ t_coord	*valid_dots(t_f *f)
 			{
 				// index++;
 				iteration_dots(i, j, &head, &current);
-				// current->index = index;
+				current->index = index++;
 				// index++; // why not 12; //
 				// index++;
 				// ft_putnbr(current->index);
@@ -288,11 +288,11 @@ void	place_figure(t_f *f) // give the necessary coordinates here;
 	t_coord *link;
 
 	i = 0;
-	// while (f->list)
-	// {
-	// 	ft_printf("%s%d%s %s%d%s %s%d%s\n", CYAN, f->list->index, RESET, YELLOW, f->list->x, RESET, GREEN, f->list->y, RESET);
-	// 	f->list = f->list->next;
-	// }
+	while (f->list)
+	{
+		ft_printf("%s%d%s %s%d%s %s%d%s\n", CYAN, f->list->index, RESET, YELLOW, f->list->x, RESET, GREEN, f->list->y, RESET);
+		f->list = f->list->next;
+	}
 
 	link = get_link(f, 12); // why i don§t get index to 12;
 
@@ -321,7 +321,7 @@ void	place_figure(t_f *f) // give the necessary coordinates here;
 void	analyze(t_f *f)
 {
 	f->list = valid_dots(f);
-	init_list(f);
+	// init_list(f);
 	place_figure(f);
 }
 
