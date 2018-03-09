@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:34:49 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/09 16:28:04 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/09 17:49:25 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,6 +184,7 @@ t_coord	*new_node(int i, int j)
 	new = (t_coord *)malloc(sizeof(t_coord));
 	new->x = i;
 	new->y = j;
+	new->index = 0;
 	new->next = NULL;
 	return (new);
 }
@@ -222,21 +223,40 @@ t_coord	*valid_dots(t_f *f)
 		{
 			if (subcheck(i, j, f) == get_dots_quantity(f))
 			{
+				// index++;
 				iteration_dots(i, j, &head, &current);
-				current->index = index++;
-			}
+				current->index = index;
+				index++; // why not 12;
+				// index++;
+				// ft_putnbr(current->index);
+			} // le castello: current list + 1.index += 1;
 			j++;
 		}
 		i++;
 	}
+				// ft_printf("%d %d\n", current->x, current->y);
+
+	// ft_printf("%s%d%s\n", YELLOW, index, RESET);
 	return (head);
 }
-
 void	init_structure(t_f *f)
 {
 	f->map = NULL;
 	f->token = NULL;
 	f->list = NULL;
+}
+
+t_coord	*get_link(t_f *f, int index)
+{
+	ft_putchar('1');
+	while (f->list)
+	{
+		if (f->list->index == index)
+			return (f->list);
+		f->list = f->list->next;
+	}
+	ft_putchar('2');
+	return (NULL);
 }
 
 void	place_figure(t_f *f) // give the necessary coordinates here;
@@ -245,20 +265,27 @@ void	place_figure(t_f *f) // give the necessary coordinates here;
 	int j;
 	int a;
 	int b;
+	t_coord *link;
 
 	i = 0;
-	while (f->list->next)
+	while (f->list)
 	{
 		ft_printf("%s%d%s %s%d%s %s%d%s\n", CYAN, f->list->index, RESET, YELLOW, f->list->x, RESET, GREEN, f->list->y, RESET);
 		f->list = f->list->next;
 	}
-	a = f->list->x;
-	b = f->list->y;
-	ft_printf("%c\n", f->letter1);
+
+	link = get_link(f, 0); // why i don§t get index to 12;
+
+	if (!link)
+		ft_putchar('3');
+
+	a = link->x;
+	b = link->y;
+	ft_putchar('4');
 	while (i < f->t_rows)
 	{
 		j = 0;
-		b = f->list->y;
+		b = link->y;
 		while (j < f->t_cols)
 		{
 			if (f->map[a][b] != f->letter1 && f->map[a][b] != f->letter2)
