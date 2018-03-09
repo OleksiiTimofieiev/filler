@@ -150,10 +150,29 @@ int		get_dots_quantity(t_f *f)
 	return (quantity);
 }
 
-// int		get_minimum_dots(t_f *f)
-// {
+int		get_minimum_dots(t_f *f)
+{
+	int i;
+	int j;
+	int count;
 
-// }
+	i = 0;
+	j = 0;
+	count = 0;
+	while (i < f->t_rows)
+	{
+		j = 0;
+		while (j <  f->t_cols)
+		{
+			if (f->token[i][j] == f->letter1 || f->token[i][j] == f->letter2)
+				count++;
+			j++;
+		}
+		i++;
+	}
+	// ft_printf("Quantity of * - > %d\n", count);
+	return (count - 1);
+}
 
 int		subcheck(int i, int j, t_f *f) // big or little, get clear with the bot;
 {
@@ -227,7 +246,7 @@ void	iteration_dots(int i, int j, t_coord **head, t_coord **current)
 	}
 }
 
-int		get_final_dots(int i, int j, t_f *f) //if it is possible to place , a cell is free for placing
+int		get_final_dots(int i, int j, t_f *f)
 {
 	int a;
 	int b;
@@ -253,7 +272,7 @@ int		get_final_dots(int i, int j, t_f *f) //if it is possible to place , a cell 
 		a++;
 		i++;
 	}
-	return ((count == 6) ? 1 : 0);
+	return ((count == get_minimum_dots(f)) ? 1 : 0);
 }
 
 t_coord	*valid_dots(t_f *f)
@@ -273,7 +292,7 @@ t_coord	*valid_dots(t_f *f)
 		j = 0;
 		while (j < f->m_cols)
 		{
-			if (subcheck(i, j, f) == get_dots_quantity(f)) // get it done;
+			if (subcheck(i, j, f) == get_dots_quantity(f))
 			{
 				// ft_printf("%d %d\n", i, j);
 				if (get_final_dots(i, j, f) == 1)
