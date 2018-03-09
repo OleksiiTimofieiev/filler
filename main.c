@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:34:49 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/09 15:38:50 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/09 16:13:58 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,17 @@ void	get_players(t_f *f)
 		{
 			if (ft_strstr(line, "p1"))
 			{
-				f->letter1 = 'x';
-				f->letter2 = 'X';
-				f->o_letter1 = 'o';
-				f->o_letter2 = 'O';
-			}
-			else if (ft_strstr(line, "p2"))
-			{
 				f->letter1 = 'o';
 				f->letter2 = 'O';
 				f->o_letter1 = 'x';
 				f->o_letter2 = 'X';
+			}
+			else if (ft_strstr(line, "p2"))
+			{
+				f->letter1 = 'x';
+				f->letter2 = 'X';
+				f->o_letter1 = 'o';
+				f->o_letter2 = 'O';
 			}
 		}
 		i++;
@@ -67,7 +67,24 @@ void	get_map(t_f *f)
 	free(line);
 }
 
-void	mod_token() ////
+void	mod_token(t_f *f)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (i < f->t_rows)
+	{
+		j = 0;
+		while (j < f->t_cols)
+		{
+			if (f->token[i][j] == '*')
+				f->token[i][j] = f->letter2; // little or large ?
+			j++;
+		}
+		i++;
+	}
+}
 
 void	get_token(t_f *f)
 {
@@ -89,6 +106,7 @@ void	get_token(t_f *f)
 		f->token[i++] = ft_strdup(line);
 	}
 	free(line);
+	mod_token(f);
 }
 
 void	get_data(t_f *f)
@@ -241,6 +259,7 @@ void	place_figure(t_f *f)
 	// ft_printf("%d %d\n", f->list->x, f->list->y);
 	a = f->list->x;
 	b = f->list->y;
+	ft_printf("%c\n", f->letter1);
 	while (i < f->t_rows)
 	{
 		j = 0;
