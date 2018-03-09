@@ -6,13 +6,17 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:36:23 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/09 15:23:34 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/09 15:40:54 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLER_H
 # define FILLER_H
 # include "./ft_printf/ft_printf.h"
+
+/*
+**-------------------------   node structure   -------------------------
+*/
 
 typedef struct		s_coord
 {
@@ -21,6 +25,10 @@ typedef struct		s_coord
 	int				y;
 	struct s_coord	*next;
 }					t_coord;
+
+/*
+**-------------------------   data structure   -------------------------
+*/
 
 typedef struct		s_f
 {
