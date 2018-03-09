@@ -1,0 +1,26 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    planning                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: otimofie <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2018/03/02 14:20:46 by otimofie          #+#    #+#              #
+#    Updated: 2018/03/06 15:28:44 by otimofie         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+- create a function to place figure;
+- create an algo of decision taking;
+- maybe create a copy of a map;
+
+
+Ideas
+
+- get clear with memory leaks;
+- 0 1 2 3 4 5 6 7 8 9 to the dot;
+- block the opponents way;
+- sort linked list (by what criteria);
+- last will always will be the clothest one;
+- n parameter for multiplying
+- visual bash from Artem;

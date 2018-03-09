@@ -1,0 +1,12 @@
+• The executable file must be named <login>.filler.
+• It must be at the root of the repository.
+• You must submit a Makefile.
+
+allowed commands:
+
+◦ read
+◦ write
+◦ malloc
+◦ free
+◦ perror
+◦ strerror
