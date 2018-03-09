@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:34:49 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/09 16:14:56 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/09 16:16:45 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -249,14 +249,11 @@ void	place_figure(t_f *f)
 
 
 	i = 0;
-	// ft_putchar('1');
-	while (f->list->next) // geet the list data according to its index; do not forget about 4 6 dot (last dot)
+	while (f->list->next)
 	{
 		ft_printf("%s%d%s %s%d%s %s%d%s\n", CYAN, f->list->index, RESET, YELLOW, f->list->x, RESET, GREEN, f->list->y, RESET);
 		f->list = f->list->next;
 	}
-	// ft_putchar('2');
-	// ft_printf("%d %d\n", f->list->x, f->list->y);
 	a = f->list->x;
 	b = f->list->y;
 	ft_printf("%c\n", f->letter1);
@@ -268,24 +265,17 @@ void	place_figure(t_f *f)
 		{
 			if (f->map[a][b] != f->letter1 && f->map[a][b] != f->letter2)
 				f->map[a][b] = f->token[i][j]; // 4 6 6 4
-			// ft_printf("%d %d\n", a, b);
 			b++;
 			j++;
 		}
 		a++;
 		i++;
 	}
-	// ft_putchar('3');
 }
 
 void	analyze(t_f *f)
 {
 	f->list = valid_dots(f);
-	// while (f->list)
-	// {
-	// 	ft_printf("%s%d%s %s%d%s\n", YELLOW, f->list->x, RESET, GREEN, f->list->y, RESET);
-	// 	f->list = f->list->next;
-	// }
 	place_figure(f);
 }
 
