@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:34:49 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/09 15:03:23 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/09 15:08:48 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,11 +226,11 @@ void	place_figure(t_f *f)
 	// ft_putchar('1');
 	while (f->list->next) // geet the list data according to its index;
 	{
-		// ft_printf("%s%d%s %s%d%s\n", YELLOW, f->list->x, RESET, GREEN, f->list->y, RESET);
+		ft_printf("%s%d%s %s%d%s\n", YELLOW, f->list->x, RESET, GREEN, f->list->y, RESET);
 		f->list = f->list->next;
 	}
 	// ft_putchar('2');
-	// ft_printf("%d %d\n", f->list->x, f->list->y);
+	ft_printf("%d %d\n", f->list->x, f->list->y);
 	a = f->list->x;
 	b = f->list->y;
 	while (i < f->t_rows)
