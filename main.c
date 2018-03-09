@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:34:49 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/09 19:14:34 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/09 20:11:37 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,6 +224,38 @@ void	iteration_dots(int i, int j, t_coord **head, t_coord **current)
 	}
 }
 
+int		get_final_dots(int i, int j, t_f *f)
+{
+	int a;
+	int b;
+	int buf;
+	int count;
+
+	a = 0;
+	buf = j;
+	count = 0;
+
+	// ft_printf("Cases of possibly valid dots->%d %d\n", a, f->t_cols);
+	
+	while (a < f->t_rows)
+	{
+		b = 0;
+		j = buf;
+		while (b < f->t_cols)
+		{
+			// ft_printf("%d %d\n", i, j);
+			if ((f->map[i][j] == f->token[a][b]) && (f->map[i][j] == f->letter1 || f->map[i][j] == f->letter2))
+				count++;
+			b++;
+			j++;
+		}
+		a++;
+		i++;
+	}
+	ft_putchar('1');
+	return ((count == 1) ? 1 : 0);
+}
+
 t_coord	*valid_dots(t_f *f)
 {
 	int		i;
@@ -243,7 +275,11 @@ t_coord	*valid_dots(t_f *f)
 		{
 			if (subcheck(i, j, f) == get_dots_quantity(f)) // add zone checking;
 			{
-				iteration_dots(i, j, &head, &current);
+					// ft_putchar('1');
+				if (get_final_dots(i, j, f) == 1)
+				{
+					iteration_dots(i, j, &head, &current);
+				}
 			}
 			j++;
 		}
@@ -289,7 +325,7 @@ void	place_figure(t_f *f) // give the necessary coordinates here;
 	// 	f->list = f->list->next;
 	// }
 
-	link = get_link(f, 1); // why i don§t get index to 12;
+	link = get_link(f, 3); // why i don§t get index to 12;
 
 	if (!link)
 		ft_putchar('3');
