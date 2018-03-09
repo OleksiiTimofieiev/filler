@@ -262,9 +262,9 @@ int		get_final_dots(int i, int j, t_f *f)
 		j = buf;
 		while (b < f->t_cols)
 		{
-			if (f->map[i][j] == '.' && (f->token[a][b] == f->letter1 || f->token[a][b] == f->letter2))
+			if (f->map[i][j] == '.' && (f->token[a][b] == f->letter1 || f->token[a][b] == f->letter2)) // to reflect necessary dots;
 				count++;
-			else if (f->map[i][j] == f->o_letter1 || f->map[i][j] == f->o_letter2)
+			else if (f->map[i][j] == f->o_letter1 || f->map[i][j] == f->o_letter2) // to reflect enemy
 				count--;
 			b++;
 			j++;
