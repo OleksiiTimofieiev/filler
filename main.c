@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:34:49 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/09 15:29:03 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/09 15:38:50 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ void	get_map(t_f *f)
 	}
 	free(line);
 }
+
+void	mod_token() ////
 
 void	get_token(t_f *f)
 {

@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-- make token to x || o;
+- make token to x || o; (modify func), get clear the big x or little x;
 - create a function to find a indexed dot;
 - create an algo of decision taking;
 - maybe create a copy of a map;
@@ -25,3 +25,5 @@ Ideas
 - last will always will be the clothest one;
 - n parameter for multiplying
 - visual bash from Artem;
+- bool change the direction;
+- visualization thit L'Char';
