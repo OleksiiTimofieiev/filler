@@ -10,7 +10,6 @@
 #                                                                              #
 # **************************************************************************** #
 
-- make token to x || o; (modify func), get clear the big x or little x;
 - create a function to find a indexed dot;
 - create an algo of decision taking;
 - maybe create a copy of a map;

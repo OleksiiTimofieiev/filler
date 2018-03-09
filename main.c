@@ -6,20 +6,20 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:34:49 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/09 16:13:58 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/09 16:14:56 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-void	get_players(t_f *f)
+void	get_players(t_f *f) // chek with bot if i need 2 iterations
 {
 	int		i;
 	char	*line;
 
 	i = 0;
 	line = NULL;
-	while (i < 2) // chek with bot if i need 2 iterations
+	while (i < 2) 
 	{
 		get_next_line(0, &line);
 		if (ft_strstr(line, "otimofie") != NULL)
@@ -67,7 +67,7 @@ void	get_map(t_f *f)
 	free(line);
 }
 
-void	mod_token(t_f *f)
+void	mod_token(t_f *f) // little or large ?
 {
 	int i;
 	int j;
@@ -79,7 +79,7 @@ void	mod_token(t_f *f)
 		while (j < f->t_cols)
 		{
 			if (f->token[i][j] == '*')
-				f->token[i][j] = f->letter2; // little or large ?
+				f->token[i][j] = f->letter2; 
 			j++;
 		}
 		i++;
