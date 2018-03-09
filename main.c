@@ -272,7 +272,7 @@ int		get_final_dots(int i, int j, t_f *f)
 		a++;
 		i++;
 	}
-	return ((count == get_minimum_dots(f)) ? 1 : 0);
+	return ((count == get_minimum_dots(f)) ? 1 : 0); // condition of only one dot within the possible position;
 }
 
 t_coord	*valid_dots(t_f *f)
@@ -336,7 +336,7 @@ void	place_figure(t_f *f) // give the necessary coordinates here;
 	t_coord *link;
 
 	i = 0;
-	link = get_link(f, 9); // why i don§t get index to 12;
+	link = get_link(f, 1); // why i don§t get index to 12;
 
 	if (!link)
 		ft_putstr("No data.");
