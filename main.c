@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:34:49 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/09 14:23:18 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/09 15:03:23 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,9 +207,48 @@ t_coord	*valid_dots(t_f *f)
 	return (head);
 }
 
+void	init_structure(t_f *f)
+{
+	f->map = NULL;
+	f->token = NULL;
+	f->list = NULL;
+}
+
 void	place_figure(t_f *f)
 {
-	
+	int i;
+	int j;
+	int a;
+	int b;
+
+
+	i = 0;
+	// ft_putchar('1');
+	while (f->list->next) // geet the list data according to its index;
+	{
+		// ft_printf("%s%d%s %s%d%s\n", YELLOW, f->list->x, RESET, GREEN, f->list->y, RESET);
+		f->list = f->list->next;
+	}
+	// ft_putchar('2');
+	// ft_printf("%d %d\n", f->list->x, f->list->y);
+	a = f->list->x;
+	b = f->list->y;
+	while (i < f->t_rows)
+	{
+		j = 0;
+		b = f->list->y;
+		while (j < f->t_cols)
+		{
+			if (f->map[a][b] != f->letter1 && f->map[a][b] != f->letter2)
+				f->map[a][b] = f->token[i][j]; // 4 6 6 4
+			// ft_printf("%d %d\n", a, b);
+			b++;
+			j++;
+		}
+		a++;
+		i++;
+	}
+	// ft_putchar('3');
 }
 
 void	analyze(t_f *f)
@@ -220,14 +259,9 @@ void	analyze(t_f *f)
 	// 	ft_printf("%s%d%s %s%d%s\n", YELLOW, f->list->x, RESET, GREEN, f->list->y, RESET);
 	// 	f->list = f->list->next;
 	// }
+	place_figure(f);
 }
 
-void	init_structure(t_f *f)
-{
-	f->map = NULL;
-	f->token = NULL;
-	f->list = NULL;
-}
 
 int		main(void)
 {
@@ -238,8 +272,9 @@ int		main(void)
 
 	get_data(&f);
 	// display_map(f);
-	// display_token(f);
+	display_token(f);
 	analyze(&f); // save the dots in the ll for the future;
+	display_map(f);
 
 	// display_map(f);
 
