@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:34:49 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/09 18:36:37 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/09 18:52:20 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,7 @@ int		get_dots_quantity(t_f *f)
 	int quantity;
 
 	quantity = 0;
-	quantity = f->t_rows * f->t_cols - 1;
+	quantity = f->t_rows * f->t_cols - 2;
 	return (quantity);
 }
 
@@ -169,11 +169,14 @@ int		subcheck(int i, int j, t_f *f) // big or little, get clear with the bot;
 			if (f->map[i][j] == '.')
 				count++;
 			else if (f->map[i][j] == f->o_letter1 || f->map[i][j] == f->o_letter2)
+				count++;
+			else if (f->map[i][j] == f->letter1 || f->map[i][j] == f->letter2)
 				count--;
 			j++;
 		}
 		i++;
 	}
+	// ft_printf("%c\n", f->letter1);
 	return (count);
 }
 
@@ -268,14 +271,14 @@ void	init_structure(t_f *f)
 
 t_coord	*get_link(t_f *f, int index)
 {
-	ft_putchar('1');
+	// ft_putchar('1');
 	while (f->list)
 	{
 		if (f->list->index == index)
 			return (f->list);
 		f->list = f->list->next;
 	}
-	ft_putchar('2');
+	// ft_putchar('2');
 	return (NULL);
 }
 
@@ -301,7 +304,7 @@ void	place_figure(t_f *f) // give the necessary coordinates here;
 
 	a = link->x;
 	b = link->y;
-	ft_putchar('4');
+	// ft_putchar('4');
 	while (i < f->t_rows)
 	{
 		j = 0;
