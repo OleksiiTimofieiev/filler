@@ -150,6 +150,11 @@ int		get_dots_quantity(t_f *f)
 	return (quantity);
 }
 
+// int		get_minimum_dots(t_f *f)
+// {
+
+// }
+
 int		subcheck(int i, int j, t_f *f) // big or little, get clear with the bot;
 {
 	int a;
@@ -222,7 +227,7 @@ void	iteration_dots(int i, int j, t_coord **head, t_coord **current)
 	}
 }
 
-int		get_final_dots(int i, int j, t_f *f) //if is possible to place , a cell is free for placing
+int		get_final_dots(int i, int j, t_f *f) //if it is possible to place , a cell is free for placing
 {
 	int a;
 	int b;
@@ -238,15 +243,17 @@ int		get_final_dots(int i, int j, t_f *f) //if is possible to place , a cell is 
 		j = buf;
 		while (b < f->t_cols)
 		{
-			if ((f->map[i][j] == f->token[a][b]) && (f->map[i][j] == f->letter1 || f->map[i][j] == f->letter2))
+			if (f->map[i][j] == '.' && (f->token[a][b] == f->letter1 || f->token[a][b] == f->letter2))
 				count++;
+			else if (f->map[i][j] == f->o_letter1 || f->map[i][j] == f->o_letter2)
+				count--;
 			b++;
 			j++;
 		}
 		a++;
 		i++;
 	}
-	return ((count == 1) ? 1 : 0);
+	return ((count == 6) ? 1 : 0);
 }
 
 t_coord	*valid_dots(t_f *f)
@@ -310,7 +317,7 @@ void	place_figure(t_f *f) // give the necessary coordinates here;
 	t_coord *link;
 
 	i = 0;
-	link = get_link(f, 1); // why i don§t get index to 12;
+	link = get_link(f, 9); // why i don§t get index to 12;
 
 	if (!link)
 		ft_putstr("No data.");
@@ -375,7 +382,7 @@ int		main(void)
 // 002 ..............................
 // 003 ..............................
 // 004 ......X.......................
-// 005 ..............................
+// 005 ........................O.....
 // 006 ..............................
 // 007 .........................OO...
 // 008 ..............................
