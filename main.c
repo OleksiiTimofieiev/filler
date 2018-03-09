@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:34:49 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/09 16:16:45 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/09 16:18:51 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	get_map(t_f *f)
 	free(line);
 }
 
-void	mod_token(t_f *f) // little or large ?
+void	mod_token(t_f *f)
 {
 	int i;
 	int j;
@@ -150,7 +150,7 @@ int		get_dots_quantity(t_f *f)
 	return (quantity);
 }
 
-int		subcheck(int i, int j, t_f *f)
+int		subcheck(int i, int j, t_f *f) // big or little, get clear with the bot;
 {
 	int a;
 	int b;
