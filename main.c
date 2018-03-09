@@ -298,7 +298,7 @@ t_coord	*valid_dots(t_f *f)
 				if (get_final_dots(i, j, f) == 1)
 				{
 					// ft_putchar('1');
-					ft_printf("%d %d\n", i, j);
+					ft_printf("%s%d%s %s%d%s\n", CYAN, i, RESET, YELLOW, j, RESET);
 					iteration_dots(i, j, &head, &current);
 				}
 			}
@@ -336,7 +336,7 @@ void	place_figure(t_f *f) // give the necessary coordinates here;
 	t_coord *link;
 
 	i = 0;
-	link = get_link(f, 1); // why i don§t get index to 12;
+	link = get_link(f, 7); // why i don§t get index to 12;
 
 	if (!link)
 		ft_putstr("No data.");
