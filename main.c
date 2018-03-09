@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:34:49 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/09 20:11:37 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/09 20:38:45 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,6 +176,7 @@ int		subcheck(int i, int j, t_f *f) // big or little, get clear with the bot;
 		}
 		i++;
 	}
+	// ft_printf("Count->%d\n", count);
 	return (count);
 }
 
@@ -193,20 +194,17 @@ t_coord	*new_node(int i, int j)
 
 void	init_list(t_f *f)
 {
-	int i;
+	int		i;
 	t_coord *tmp;
 
 	tmp = f->list;
 	i = 1;
-	// ft_putchar('1');
 	while (tmp)
 	{
 		tmp->index = i;
-		tmp = tmp->next; 
+		tmp = tmp->next;
 		i++;
 	}
-	// ft_putchar('2');
-
 }
 
 void	iteration_dots(int i, int j, t_coord **head, t_coord **current)
@@ -234,16 +232,12 @@ int		get_final_dots(int i, int j, t_f *f)
 	a = 0;
 	buf = j;
 	count = 0;
-
-	// ft_printf("Cases of possibly valid dots->%d %d\n", a, f->t_cols);
-	
 	while (a < f->t_rows)
 	{
 		b = 0;
 		j = buf;
 		while (b < f->t_cols)
 		{
-			// ft_printf("%d %d\n", i, j);
 			if ((f->map[i][j] == f->token[a][b]) && (f->map[i][j] == f->letter1 || f->map[i][j] == f->letter2))
 				count++;
 			b++;
@@ -252,7 +246,6 @@ int		get_final_dots(int i, int j, t_f *f)
 		a++;
 		i++;
 	}
-	ft_putchar('1');
 	return ((count == 1) ? 1 : 0);
 }
 
@@ -273,23 +266,22 @@ t_coord	*valid_dots(t_f *f)
 		j = 0;
 		while (j < f->m_cols)
 		{
-			if (subcheck(i, j, f) == get_dots_quantity(f)) // add zone checking;
+			if (subcheck(i, j, f) == get_dots_quantity(f)) // get it done;
 			{
-					// ft_putchar('1');
-				if (get_final_dots(i, j, f) == 1)
-				{
+				ft_printf("%d %d\n", i, j);
+				// if (get_final_dots(i, j, f) == 1)
+				// {
+				// 	ft_putchar('1');
 					iteration_dots(i, j, &head, &current);
-				}
+				// }
 			}
 			j++;
 		}
 		i++;
 	}
-				// ft_printf("%d %d\n", current->x, current->y);
-
-	// ft_printf("%s%d%s\n", YELLOW, index, RESET);
 	return (head);
 }
+
 void	init_structure(t_f *f)
 {
 	f->map = NULL;
@@ -299,14 +291,12 @@ void	init_structure(t_f *f)
 
 t_coord	*get_link(t_f *f, int index)
 {
-	// ft_putchar('1');
 	while (f->list)
 	{
 		if (f->list->index == index)
 			return (f->list);
 		f->list = f->list->next;
 	}
-	// ft_putchar('2');
 	return (NULL);
 }
 
@@ -319,13 +309,7 @@ void	place_figure(t_f *f) // give the necessary coordinates here;
 	t_coord *link;
 
 	i = 0;
-	// while (f->list)
-	// {
-	// 	ft_printf("%s%d%s %s%d%s %s%d%s\n", CYAN, f->list->index, RESET, YELLOW, f->list->x, RESET, GREEN, f->list->y, RESET);
-	// 	f->list = f->list->next;
-	// }
-
-	link = get_link(f, 3); // why i don§t get index to 12;
+	link = get_link(f, 2); // why i don§t get index to 12;
 
 	if (!link)
 		ft_putchar('3');
@@ -392,7 +376,7 @@ int		main(void)
 // 004 ......X.......................
 // 005 ..............................
 // 006 ..............................
-// 007 ..........................O...
+// 007 .........................OO...
 // 008 ..............................
 // 009 ..............................
 // 010 ..............................
