@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:36:23 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/09 15:40:54 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/09 16:25:39 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct		s_coord
 
 typedef struct		s_f
 {
-	char			letter1; // on which turn do it;
+	char			letter1;
 	char			letter2;
 	char			o_letter1;
 	char			o_letter2;

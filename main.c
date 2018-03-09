@@ -6,20 +6,20 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:34:49 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/09 16:18:51 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/09 16:28:04 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-void	get_players(t_f *f) // chek with bot if i need 2 iterations
+void	get_players(t_f *f) // chek with bot if i need 2 iterations;
 {
 	int		i;
 	char	*line;
 
 	i = 0;
 	line = NULL;
-	while (i < 2) 
+	while (i < 2)
 	{
 		get_next_line(0, &line);
 		if (ft_strstr(line, "otimofie") != NULL)
@@ -67,7 +67,7 @@ void	get_map(t_f *f)
 	free(line);
 }
 
-void	mod_token(t_f *f)
+void	mod_token(t_f *f) // big or little, get clear with the bot;
 {
 	int i;
 	int j;
@@ -79,7 +79,7 @@ void	mod_token(t_f *f)
 		while (j < f->t_cols)
 		{
 			if (f->token[i][j] == '*')
-				f->token[i][j] = f->letter2; 
+				f->token[i][j] = f->letter2;
 			j++;
 		}
 		i++;
@@ -223,8 +223,7 @@ t_coord	*valid_dots(t_f *f)
 			if (subcheck(i, j, f) == get_dots_quantity(f))
 			{
 				iteration_dots(i, j, &head, &current);
-				current->index = index;
-				index++;
+				current->index = index++;
 			}
 			j++;
 		}
@@ -240,13 +239,12 @@ void	init_structure(t_f *f)
 	f->list = NULL;
 }
 
-void	place_figure(t_f *f)
+void	place_figure(t_f *f) // give the necessary coordinates here;
 {
 	int i;
 	int j;
 	int a;
 	int b;
-
 
 	i = 0;
 	while (f->list->next)
@@ -264,7 +262,7 @@ void	place_figure(t_f *f)
 		while (j < f->t_cols)
 		{
 			if (f->map[a][b] != f->letter1 && f->map[a][b] != f->letter2)
-				f->map[a][b] = f->token[i][j]; // 4 6 6 4
+				f->map[a][b] = f->token[i][j];
 			b++;
 			j++;
 		}
@@ -278,7 +276,6 @@ void	analyze(t_f *f)
 	f->list = valid_dots(f);
 	place_figure(f);
 }
-
 
 int		main(void)
 {

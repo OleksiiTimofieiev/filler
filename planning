@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 - create a function to find a indexed dot;
-- create an algo of decision taking;
+- create an algo of decision taking (the shortest distance beetween opponent and valid zone);
 - maybe create a copy of a map;
 
 
