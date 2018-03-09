@@ -10,7 +10,8 @@
 #                                                                              #
 # **************************************************************************** #
 
-- create a function to place figure;
+- add an index to place a figure;
+- create a function to find a indexed dot;
 - create an algo of decision taking;
 - maybe create a copy of a map;
 

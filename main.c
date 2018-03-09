@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:34:49 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/09 15:11:27 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/09 15:27:54 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,9 +187,11 @@ t_coord	*valid_dots(t_f *f)
 {
 	int		i;
 	int		j;
+	int		index;
 	t_coord *head;
 	t_coord *current;
 
+	index = 0;
 	head = NULL;
 	current = NULL;
 	i = 0;
@@ -199,7 +201,11 @@ t_coord	*valid_dots(t_f *f)
 		while (j < f->m_cols)
 		{
 			if (subcheck(i, j, f) == get_dots_quantity(f))
+			{
 				iteration_dots(i, j, &head, &current);
+				current->index = index;
+				index++;
+			}
 			j++;
 		}
 		i++;
@@ -226,7 +232,7 @@ void	place_figure(t_f *f)
 	// ft_putchar('1');
 	while (f->list->next) // geet the list data according to its index;
 	{
-		// ft_printf("%s%d%s %s%d%s\n", YELLOW, f->list->x, RESET, GREEN, f->list->y, RESET);
+		ft_printf("%s%d%s %s%d%s %s%d%s\n", CYAN, f->list->index, RESET, YELLOW, f->list->x, RESET, GREEN, f->list->y, RESET);
 		f->list = f->list->next;
 	}
 	// ft_putchar('2');
@@ -272,7 +278,7 @@ int		main(void)
 
 	get_data(&f);
 	// display_map(f);
-	display_token(f);
+	// display_token(f);
 	analyze(&f); // save the dots in the ll for the future;
 	display_map(f);
 
