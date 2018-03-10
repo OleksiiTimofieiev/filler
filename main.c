@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:34:49 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/10 20:38:58 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/10 21:03:34 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,7 +186,7 @@ void	d_display_map(t_f *f)
 
 	i = 0;
 	ft_printf("\n");
-	f->map_analyze[0][0] = 7;
+	// f->map_analyze[0][0] = 7;
 	while (i < f->m_rows)
 	{
 		j = 0;
@@ -200,7 +200,7 @@ void	d_display_map(t_f *f)
 			else if (f->map_analyze[i][j] == f->letter1 || f->map_analyze[i][j] == f->letter2)
 				printf("%c ",'O');
 			else
-				printf("%.1f ", f->map_analyze[i][j]);
+				printf("%.0f ", f->map_analyze[i][j]);
 			// printf("%.0f ", f->map_analyze[i][j]);
 			// ft_printf("-> %s\n", f.map[i++]);
 			j++;
@@ -465,6 +465,7 @@ double	get_calculations(int i, int j, t_f *f)
 {
 	double sum;
 	double n;
+	double buf;
 	t_coord *current;
 	double res;
 
@@ -474,11 +475,13 @@ double	get_calculations(int i, int j, t_f *f)
 	res = 0;
 	while (current)
 	{
-		sum += d_abs(i, current->x) + d_abs(j, current->y);
+		buf = d_abs(i, current->x) + d_abs(j, current->y);
+		sum += buf;
+		// printf("%f\n", buf);
 		n++;
 		current = current->next;
 	}
-	printf("%f %f\n", sum, n);
+	// printf("%f %f\n", sum, n);
 	return (sum / n);
 
 }
@@ -495,7 +498,10 @@ void	rate_the_cell_of_the_map(t_f *f)
 		while (j < f->m_cols)
 		{
 			if (f->map_analyze[i][j] == 46)
+			{
+				// printf("%d %d\n", i, j);
 				f->map_analyze[i][j] = get_calculations(i, j, f);
+			}
 			j++;
 		}
 		i++;
@@ -512,7 +518,7 @@ void	analyze(t_f *f)
 	f->map_analyze = copy_map_to_double(f);
 	d_display_map(f);
 	rate_the_cell_of_the_map(f);
-	// d_display_map(f);
+	d_display_map(f);
 	// while (f->o_dots)
 	// {
 	// 	ft_printf("Enemy -> %d %d\n", f->o_dots->x, f->o_dots->y);
