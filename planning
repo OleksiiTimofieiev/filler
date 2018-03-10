@@ -10,7 +10,9 @@
 #                                                                              #
 # **************************************************************************** #
 
-- create a function to find a indexed dot;
+- create a function to get the opponent dots to a linked list;
+- create a function which analyzes the lowest zone for the figure placement on the map;
+- create a decision making function;
 - create an algo of decision taking (the shortest distance beetween opponent and valid zone);
 - maybe create a copy of a map;
 

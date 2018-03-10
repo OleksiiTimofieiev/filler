@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:34:49 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/10 12:53:16 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/10 17:18:15 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,10 +109,61 @@ void	get_token(t_f *f)
 	mod_token(f);
 }
 
+t_coord	*new_node(int i, int j)
+{
+	t_coord	*new;
+
+	new = (t_coord *)malloc(sizeof(t_coord));
+	new->x = i;
+	new->y = j;
+	new->index = 0;
+	new->next = NULL;
+	return (new);
+}
+
+t_coord	*get_opponent_dots(t_f *f)
+{
+	int i;
+	int j;
+	t_coord *head;
+	t_coord *current;
+
+	head = NULL;
+	current = NULL;
+
+	i = 0;
+	while (i < f->m_rows)
+	{
+		j = 0;
+		while (j < f->m_cols)
+		{
+			if (f->map[i][j] == f->o_letter1 || f->map[i][j] == f->o_letter2)
+			{
+				ft_printf("Enemy --> %d %d\n", i, j);
+				if (!(current))
+				{
+					current = new_node(i, j);
+					head = current;
+				}
+				else
+				{
+					while ((current)->next)
+						current = (current)->next;
+					(current)->next = new_node(i, j);
+				}
+			}
+			j++;
+		}
+		i++;
+	}
+	return (head);
+}
+
 void	get_data(t_f *f)
 {
 	get_map(f);
 	get_token(f);
+
 }
 
 void	display_map(t_f f)
@@ -174,7 +225,7 @@ int		get_minimum_dots(t_f *f)
 	return (count - 1);
 }
 
-int		subcheck(int i, int j, t_f *f) // big or little, get clear with the bot;
+int		subcheck(int i, int j, t_f *f)
 {
 	int a;
 	int b;
@@ -202,18 +253,6 @@ int		subcheck(int i, int j, t_f *f) // big or little, get clear with the bot;
 	}
 	// ft_printf("Count->%d\n", count);
 	return (count);
-}
-
-t_coord	*new_node(int i, int j)
-{
-	t_coord	*new;
-
-	new = (t_coord *)malloc(sizeof(t_coord));
-	new->x = i;
-	new->y = j;
-	new->index = 0;
-	new->next = NULL;
-	return (new);
 }
 
 void	init_list(t_f *f)
@@ -363,6 +402,13 @@ void	place_figure(t_f *f) // give the necessary coordinates here;
 void	analyze(t_f *f)
 {
 	f->list = valid_dots(f);
+	ft_putchar('1');
+	f->o_dots = get_opponent_dots(f);
+	// while (f->o_dots)
+	// {
+	// 	ft_printf("Enemy -> %d %d\n", f->o_dots->x, f->o_dots->y);
+	// 	f->o_dots = f->o_dots->next;
+	// }
 	init_list(f);
 	place_figure(f);
 }
@@ -398,8 +444,8 @@ int		main(void)
 // 012345678901234567890123456789
 // 000 ..............................
 // 001 ..............................
-// 002 ..............................
-// 003 ..............................
+// 002 ......X.......................
+// 003 .....XXX......................
 // 004 ......X.......................
 // 005 ........................O.O...
 // 006 ..............................

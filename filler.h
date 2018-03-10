@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:36:23 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/10 12:57:19 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/10 17:01:19 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,8 @@ typedef struct		s_f
 	int				t_cols;
 	char			**map;
 	char			**token;
+	t_coord			*o_dots;
 	t_coord			*list;
 }					t_f;
-
-/*
-**-------------------------   enemy structure   ------------------------
-*/
 
 #endif
