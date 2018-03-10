@@ -12,7 +12,6 @@
 
 - create a function which analyzes the lowest zone for the figure placement on the map;
 - create a decision making function;
-- create a function which places the distance on the map;
 
 Ideas
 
@@ -27,3 +26,4 @@ Ideas
 - visualization with L'Char';
 - if no valid dotds -> exit(0);
 - checker ?
+- artem floating concept
