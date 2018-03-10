@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:34:49 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/10 18:47:20 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/10 18:53:30 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,6 @@ void	get_data(t_f *f)
 {
 	get_map(f);
 	get_token(f);
-
 }
 
 void	display_map(t_f f)
@@ -450,7 +449,6 @@ void	analyze(t_f *f)
 {
 	// maybe I will need head in order to save the list 
 	// or have the internal variable wothout moving the main pointer to head
-
 	f->list = valid_dots(f);
 	// ft_putchar('1');
 	f->o_dots = get_opponent_dots(f);
