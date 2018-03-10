@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:34:49 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/10 17:18:15 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/10 17:27:28 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ t_coord	*get_opponent_dots(t_f *f)
 		{
 			if (f->map[i][j] == f->o_letter1 || f->map[i][j] == f->o_letter2)
 			{
-				ft_printf("Enemy --> %d %d\n", i, j);
+				// ft_printf("Enemy --> %d %d\n", i, j);
 				if (!(current))
 				{
 					current = new_node(i, j);
@@ -401,8 +401,11 @@ void	place_figure(t_f *f) // give the necessary coordinates here;
 
 void	analyze(t_f *f)
 {
+	// maybe I will need head in order to save the list 
+	// or have the internal variable wothout moving the main pointer to head
+
 	f->list = valid_dots(f);
-	ft_putchar('1');
+	// ft_putchar('1');
 	f->o_dots = get_opponent_dots(f);
 	// while (f->o_dots)
 	// {
