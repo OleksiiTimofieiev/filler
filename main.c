@@ -336,7 +336,7 @@ void	place_figure(t_f *f) // give the necessary coordinates here;
 	t_coord *link;
 
 	i = 0;
-	link = get_link(f, 1); // why i don§t get index to 12;
+	link = get_link(f, 1); // why i don§t get index to 12; // a way to exit the program;
 
 	if (!link)
 		ft_putstr("No data.");
