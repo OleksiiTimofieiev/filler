@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:36:23 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/10 17:01:19 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/10 17:47:06 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@
 
 typedef struct		s_coord
 {
-	int				index;
 	int				x;
 	int				y;
+	int				index;
+	double			distance;
 	struct s_coord	*next;
 }					t_coord;
 

@@ -10,6 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
+- create a function which places the distance on the map;
 - create a function which analyzes the lowest zone for the figure placement on the map;
 - create a decision making function;
 - create an algo of decision taking (the shortest distance beetween opponent and valid zone);

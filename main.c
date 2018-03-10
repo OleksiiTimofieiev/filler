@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:34:49 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/10 17:27:28 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/10 17:47:26 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ t_coord	*new_node(int i, int j)
 	new->x = i;
 	new->y = j;
 	new->index = 0;
+	new->distance = 0;
 	new->next = NULL;
 	return (new);
 }
