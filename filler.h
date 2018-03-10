@@ -6,13 +6,14 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:36:23 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/10 17:47:06 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/10 18:44:30 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLER_H
 # define FILLER_H
 # include "./ft_printf/ft_printf.h"
+# include <stdio.h> /////work with double;
 
 /*
 **-------------------------   node structure   -------------------------
@@ -43,6 +44,7 @@ typedef struct		s_f
 	int				t_cols;
 	char			**map;
 	char			**token;
+	double			**map_analyze;
 	t_coord			*o_dots;
 	t_coord			*list;
 }					t_f;

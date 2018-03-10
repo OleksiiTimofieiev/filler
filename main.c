@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:34:49 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/10 17:47:26 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/10 18:47:20 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,6 +177,27 @@ void	display_map(t_f f)
 	{
 		ft_printf("%d", i);
 		ft_printf("-> %s\n", f.map[i++]);
+	}
+}
+
+void	d_display_map(t_f *f)
+{
+	int i;
+	int j;
+
+	i = 0;
+	ft_printf("\n");
+	while (i < f->m_rows)
+	{
+		j = 0;
+		while (j < f->m_cols)
+		{
+			printf("%.0f ", f->map_analyze[i][j]);
+			// ft_printf("-> %s\n", f.map[i++]);
+			j++;
+		}
+		printf("\n");
+		i++;
 	}
 }
 
@@ -400,6 +421,31 @@ void	place_figure(t_f *f) // give the necessary coordinates here;
 	}
 }
 
+double	**copy_map_to_double(t_f *f)
+{
+	int i;
+	int j;
+	double **res;
+
+	i = 0;
+	res = NULL;
+	res = (double **)malloc(sizeof(double*) * f->m_rows);
+	while (i < f->m_rows)
+		res[i++] = (double*)malloc(sizeof(double) * f->m_cols);
+	i = 0;
+	while (i < f->m_rows)
+	{
+		j = 0;
+		while (j < f->m_cols)
+		{
+			res[i][j] = f->map[i][j];
+			j++;
+		}
+		i++;
+	}
+	return (res);
+}
+
 void	analyze(t_f *f)
 {
 	// maybe I will need head in order to save the list 
@@ -408,6 +454,8 @@ void	analyze(t_f *f)
 	f->list = valid_dots(f);
 	// ft_putchar('1');
 	f->o_dots = get_opponent_dots(f);
+	f->map_analyze = copy_map_to_double(f);
+	d_display_map(f);
 	// while (f->o_dots)
 	// {
 	// 	ft_printf("Enemy -> %d %d\n", f->o_dots->x, f->o_dots->y);
