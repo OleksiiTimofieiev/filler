@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:34:49 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/10 19:07:15 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/10 20:05:56 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,22 +190,22 @@ void	d_display_map(t_f *f)
 	while (i < f->m_rows)
 	{
 		j = 0;
-		ft_printf("%d-> ", i);
+		printf("%d-> ", i);
 		while (j < f->m_cols)
 		{
 			if (f->map_analyze[i][j] == 46)
-				ft_putchar('.');
+				printf("%c ", '.');
 			else if (f->map_analyze[i][j] == f->o_letter1 || f->map_analyze[i][j] == f->o_letter2)
-				ft_putchar('X');
+				printf("%c ",'X');
 			else if (f->map_analyze[i][j] == f->letter1 || f->map_analyze[i][j] == f->letter2)
-				ft_putchar('O');
+				printf("%c ",'O');
 			else
-				printf("%.1f", f->map_analyze[i][j]);
+				printf("%.1f ", f->map_analyze[i][j]);
 			// printf("%.0f ", f->map_analyze[i][j]);
 			// ft_printf("-> %s\n", f.map[i++]);
 			j++;
 		}
-		ft_printf("\n");
+		printf("\n");
 		i++;
 	}
 }
