@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:34:49 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/09 20:38:45 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/10 12:53:16 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	get_map(t_f *f)
 	free(line);
 }
 
-void	mod_token(t_f *f) // big or little, get clear with the bot;
+void	mod_token(t_f *f)
 {
 	int i;
 	int j;
