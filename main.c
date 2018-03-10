@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:34:49 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/10 18:53:30 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/10 19:07:15 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,16 +186,26 @@ void	d_display_map(t_f *f)
 
 	i = 0;
 	ft_printf("\n");
+	f->map_analyze[0][0] = 7;
 	while (i < f->m_rows)
 	{
 		j = 0;
+		ft_printf("%d-> ", i);
 		while (j < f->m_cols)
 		{
-			printf("%.0f ", f->map_analyze[i][j]);
+			if (f->map_analyze[i][j] == 46)
+				ft_putchar('.');
+			else if (f->map_analyze[i][j] == f->o_letter1 || f->map_analyze[i][j] == f->o_letter2)
+				ft_putchar('X');
+			else if (f->map_analyze[i][j] == f->letter1 || f->map_analyze[i][j] == f->letter2)
+				ft_putchar('O');
+			else
+				printf("%.1f", f->map_analyze[i][j]);
+			// printf("%.0f ", f->map_analyze[i][j]);
 			// ft_printf("-> %s\n", f.map[i++]);
 			j++;
 		}
-		printf("\n");
+		ft_printf("\n");
 		i++;
 	}
 }
@@ -396,7 +406,7 @@ void	place_figure(t_f *f) // give the necessary coordinates here;
 	t_coord *link;
 
 	i = 0;
-	link = get_link(f, 1); // why i don§t get index to 12; // a way to exit the program;
+	link = get_link(f, 4); // why i don§t get index to 12; // a way to exit the program;
 
 	if (!link)
 		ft_putstr("No data.");
