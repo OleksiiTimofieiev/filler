@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:34:49 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/10 20:05:56 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/10 20:38:58 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -455,6 +455,53 @@ double	**copy_map_to_double(t_f *f)
 	return (res);
 }
 
+double	d_abs(int x, int y)
+{
+	return (((x - y) < 0) ? (x - y) * (-1) : (x - y));
+}
+
+
+double	get_calculations(int i, int j, t_f *f)
+{
+	double sum;
+	double n;
+	t_coord *current;
+	double res;
+
+	sum = 0;
+	n = 0;
+	current = f->o_dots;
+	res = 0;
+	while (current)
+	{
+		sum += d_abs(i, current->x) + d_abs(j, current->y);
+		n++;
+		current = current->next;
+	}
+	printf("%f %f\n", sum, n);
+	return (sum / n);
+
+}
+
+void	rate_the_cell_of_the_map(t_f *f)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (i < f->m_rows)
+	{
+		j = 0;
+		while (j < f->m_cols)
+		{
+			if (f->map_analyze[i][j] == 46)
+				f->map_analyze[i][j] = get_calculations(i, j, f);
+			j++;
+		}
+		i++;
+	}
+}
+
 void	analyze(t_f *f)
 {
 	// maybe I will need head in order to save the list 
@@ -464,6 +511,8 @@ void	analyze(t_f *f)
 	f->o_dots = get_opponent_dots(f);
 	f->map_analyze = copy_map_to_double(f);
 	d_display_map(f);
+	rate_the_cell_of_the_map(f);
+	// d_display_map(f);
 	// while (f->o_dots)
 	// {
 	// 	ft_printf("Enemy -> %d %d\n", f->o_dots->x, f->o_dots->y);
