@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:34:49 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/10 21:03:34 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/10 21:05:42 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -483,7 +483,6 @@ double	get_calculations(int i, int j, t_f *f)
 	}
 	// printf("%f %f\n", sum, n);
 	return (sum / n);
-
 }
 
 void	rate_the_cell_of_the_map(t_f *f)
