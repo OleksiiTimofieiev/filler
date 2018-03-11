@@ -11,6 +11,8 @@
 # **************************************************************************** #
 
 - create a dor placing function and check the algo via vm;
+- maybe O == 0;
+- maybe max or min; bool it;
 
 Ideas
 
