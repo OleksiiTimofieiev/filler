@@ -16,13 +16,10 @@ Ideas
 
 - get clear with memory leaks;
 - leaks for a concrete function;
-- block the opponents way;
-- sort linked list (by what criteria);
-- last will always will be the clothest one;
-- n parameter for multiplying
+- block the opponents possible vector way (n parameter for multiplying);
 - visual bash from Artem;
 - bool change the direction;
 - visualization with L'Char';
 - if no valid dotds -> exit(0);
-- checker ?
-- artem floating concept
+- artem floating dot concept
+- https://gitlab.com/omentes/filler/blob/c1832477cba001cfffa261b731d22ebbf067bdd4/srcs/start.c

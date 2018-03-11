@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:34:49 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/11 15:00:12 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/11 15:10:17 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,7 +232,7 @@ int		get_dots_quantity(t_f *f)
 	return (quantity);
 }
 
-int		get_minimum_dots(t_f *f)
+int		get_minimum_dots(t_f *f) // check if 8, not 7
 {
 	int i;
 	int j;
@@ -316,7 +316,7 @@ void	iteration_dots(int i, int j, t_coord **head, t_coord **current)
 	}
 }
 
-int		get_final_dots(int i, int j, t_f *f)
+int		get_final_dots(int i, int j, t_f *f) // check if 8, not 7
 {
 	int a;
 	int b;
@@ -392,7 +392,6 @@ t_coord	*get_link(t_f *f, int index) // finish it;
 	int 	index;
 
 	min = f->list->distance;
-
 	while (f->list)
 	{
 		if (f->list->distance < min)
@@ -416,7 +415,7 @@ void	place_figure(t_f *f) // give the necessary coordinates here;
 	t_coord *link;
 
 	i = 0;
-	link = get_link(f, 8); // a way to exit the program; else exit(0);
+	link = get_link(f); // 1. return a lowest one; // 2.a way to exit the program; else exit(0);
 
 	if (!link)
 		ft_putstr("No data.");
