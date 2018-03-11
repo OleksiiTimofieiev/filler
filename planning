@@ -13,6 +13,12 @@
 - create a dor placing function and check the algo via vm;
 - maybe O == 0;
 - maybe max or min; bool it;
+- reading ?
+- ft_putnbr(candidate.y);
+	ft_putchar(' ');
+	ft_putnbr(candidate.x);
+	ft_putchar('\n');
+
 
 Ideas
 
