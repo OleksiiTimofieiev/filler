@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:34:49 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/11 14:58:51 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/11 15:00:12 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -386,7 +386,7 @@ void	init_structure(t_f *f)
 	f->list = NULL;
 }
 
-t_coord	*get_link(t_f *f, int index)
+t_coord	*get_link(t_f *f, int index) // finish it;
 {
 	double	min;
 	int 	index;
@@ -416,7 +416,7 @@ void	place_figure(t_f *f) // give the necessary coordinates here;
 	t_coord *link;
 
 	i = 0;
-	link = get_link(f, 8); // why i don§t get index to 12; // a way to exit the program;
+	link = get_link(f, 8); // a way to exit the program; else exit(0);
 
 	if (!link)
 		ft_putstr("No data.");
