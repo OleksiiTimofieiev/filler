@@ -316,16 +316,18 @@ void	iteration_dots(int i, int j, t_coord **head, t_coord **current)
 	}
 }
 
-int		get_final_dots(int i, int j, t_f *f) // check if 8, not 7
+int		get_final_dots(int i, int j, t_f *f) // check if 8, not 7 // calculate quantity of 'O'; // maybe not count; // '.' rethink it over
 {
 	int a;
 	int b;
 	int buf;
 	int count;
+	int n;
 
 	a = 0;
 	buf = j;
 	count = 0;
+	n = 0;
 	while (a < f->t_rows)
 	{
 		b = 0;
@@ -334,14 +336,17 @@ int		get_final_dots(int i, int j, t_f *f) // check if 8, not 7
 		{
 			if (f->map[i][j] == '.' && (f->token[a][b] == f->letter1 || f->token[a][b] == f->letter2)) // to reflect necessary dots;
 				count++;
-			// else if (f->map[i][j] == f->o_letter1 || f->map[i][j] == f->o_letter2) // to reflect enemy
-			// 	count--;
+			// else if (f->map[i][j] == f->letter1 || f->map[i][j] == f->letter2) // count--;
+			// 	n++;
 			b++;
 			j++;
 		}
 		a++;
 		i++;
 	}
+	// if (count == get_minimum_dots(f) && n == 1)
+	// 	return (1);
+	// return (0);
 	return ((count == get_minimum_dots(f)) ? 1 : 0); // condition of only one dot within the possible position;
 }
 
@@ -384,9 +389,11 @@ void	init_structure(t_f *f)
 	f->map = NULL;
 	f->token = NULL;
 	f->list = NULL;
+	f->o_dots = NULL;
+	f->map_analyze = NULL;
 }
 
-t_coord	*get_link(t_f *f)
+t_coord	*get_link(t_f *f) // min or max ?;
 {
 	double	min;
 	int 	index;
@@ -394,18 +401,19 @@ t_coord	*get_link(t_f *f)
 
 	index = 0;
 	head1 = f->list;
-	min = head1->distance;
+	min = head1->distance; //max
 	index = head1->index;
 	while (head1)
 	{
-		if (head1->distance < min)
+		if (head1->distance > min) //max
 		{
-			min = head1->distance;
+			min = head1->distance; //max
 			index = head1->index;
 		}
 		head1 = head1->next;
 	}
 	head1 = f->list;
+	printf("Index->%d\n", index);
 	while (head1)
 	{
 		if (head1->index == index)
@@ -589,7 +597,7 @@ void	analyze(t_f *f)
 	f->map_analyze = copy_map_to_double(f);
 	// d_display_map(f);
 	rate_the_cell_of_the_map(f);
-	// d_display_map(f);
+	d_display_map(f);
 	get_valid_zone_weight(f);
 	// while (f->o_dots)
 	// {
@@ -633,13 +641,13 @@ int		main(void)
 // Plateau 14 30:
 // 012345678901234567890123456789
 // 000 ..............................
-// 001 ......XX......................
-// 002 ......X.......................
-// 003 .....XXX......................
-// 004 ......X.......................
-// 005 ........................O.O...
-// 006 ..............................
-// 007 .........................OO...
+// 001 ......XX..........OOOOOOO.....
+// 002 ......X.........OOOOOO........
+// 003 .....XXXXX......OO.OOOOOOO....
+// 004 ......XXXXXXXX.O..OO.OO.......
+// 005 ......XXXX...........OOOO.O...
+// 006 .......XX.....................
+// 007 .......XX.....................
 // 008 ..............................
 // 009 ..............................
 // 010 ..............................
