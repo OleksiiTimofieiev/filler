@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:34:49 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/11 12:58:26 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/11 14:04:58 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -334,8 +334,8 @@ int		get_final_dots(int i, int j, t_f *f)
 		{
 			if (f->map[i][j] == '.' && (f->token[a][b] == f->letter1 || f->token[a][b] == f->letter2)) // to reflect necessary dots;
 				count++;
-			else if (f->map[i][j] == f->o_letter1 || f->map[i][j] == f->o_letter2) // to reflect enemy
-				count--;
+			// else if (f->map[i][j] == f->o_letter1 || f->map[i][j] == f->o_letter2) // to reflect enemy
+			// 	count--;
 			b++;
 			j++;
 		}
@@ -406,7 +406,7 @@ void	place_figure(t_f *f) // give the necessary coordinates here;
 	t_coord *link;
 
 	i = 0;
-	link = get_link(f, 4); // why i don§t get index to 12; // a way to exit the program;
+	link = get_link(f, 1); // why i don§t get index to 12; // a way to exit the program;
 
 	if (!link)
 		ft_putstr("No data.");
