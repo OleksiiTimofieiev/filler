@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:34:49 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/11 14:04:58 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/11 14:49:55 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -528,14 +528,14 @@ double	get_list_weight(t_f *f, int x, int y)
 		{
 			// ft_printf("%d %d\n", a, b);
 			distance += f->map_analyze[a][b];
-			printf("%f\n",f->map_analyze[a][b]);
+			// printf("%f\n",f->map_analyze[a][b]);
 			j++;
 			b++;
 		}
 		i++;
 		a++;
 	}
-	printf("Dots -> %d %d, Distance -> %f\n", x, y, distance);
+	// printf("Dots -> %d %d, Distance -> %f\n", x, y, distance);
 	// ft_printf("Done\n");
 	return (distance);
 }
@@ -558,11 +558,6 @@ void	get_valid_zone_weight(t_f *f)
 	}
 }
 
-
-
-
-
-
 void	analyze(t_f *f)
 {
 	// maybe I will need head in order to save the list 
@@ -571,9 +566,9 @@ void	analyze(t_f *f)
 	// ft_putchar('1');
 	f->o_dots = get_opponent_dots(f);
 	f->map_analyze = copy_map_to_double(f);
-	d_display_map(f);
+	// d_display_map(f);
 	rate_the_cell_of_the_map(f);
-	d_display_map(f);
+	// d_display_map(f);
 	get_valid_zone_weight(f);
 	// while (f->o_dots)
 	// {
@@ -596,8 +591,8 @@ int		main(void)
 	// display_map(f);
 	// display_token(f);
 	analyze(&f); // save the dots in the ll for the future;
-	display_map(f);
-	ft_printf("%d\n", 'O');
+	// display_map(f);
+	// ft_printf("%d\n", 'O');
 
 	// display_map(f);
 
