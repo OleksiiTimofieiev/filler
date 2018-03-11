@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:34:49 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/10 21:34:42 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/11 12:58:26 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -507,6 +507,62 @@ void	rate_the_cell_of_the_map(t_f *f)
 	}
 }
 
+double	get_list_weight(t_f *f, int x, int y)
+{
+	int i;
+	int j;
+	int a;
+	int b;
+	double distance;
+
+	i = 0;
+	j = 0;
+	distance = 0;
+	a = x;
+	b = y;
+	while (i < f->t_rows)
+	{
+		j = 0;
+		b = y;
+		while (j < f->t_cols)
+		{
+			// ft_printf("%d %d\n", a, b);
+			distance += f->map_analyze[a][b];
+			printf("%f\n",f->map_analyze[a][b]);
+			j++;
+			b++;
+		}
+		i++;
+		a++;
+	}
+	printf("Dots -> %d %d, Distance -> %f\n", x, y, distance);
+	// ft_printf("Done\n");
+	return (distance);
+}
+
+void	get_valid_zone_weight(t_f *f)
+{
+	t_coord *current;
+
+	current = f->list;
+	while (current)
+	{
+		current->distance = get_list_weight(f, current->x, current->y);
+		current = current->next;
+	}
+	current = f->list;
+	while (current)
+	{
+		// printf("Distance -> %f\n", current->distance);
+		current = current->next;
+	}
+}
+
+
+
+
+
+
 void	analyze(t_f *f)
 {
 	// maybe I will need head in order to save the list 
@@ -518,6 +574,7 @@ void	analyze(t_f *f)
 	d_display_map(f);
 	rate_the_cell_of_the_map(f);
 	d_display_map(f);
+	get_valid_zone_weight(f);
 	// while (f->o_dots)
 	// {
 	// 	ft_printf("Enemy -> %d %d\n", f->o_dots->x, f->o_dots->y);
@@ -526,6 +583,7 @@ void	analyze(t_f *f)
 	init_list(f);
 	place_figure(f);
 }
+
 
 int		main(void)
 {
@@ -539,6 +597,7 @@ int		main(void)
 	// display_token(f);
 	analyze(&f); // save the dots in the ll for the future;
 	display_map(f);
+	ft_printf("%d\n", 'O');
 
 	// display_map(f);
 
