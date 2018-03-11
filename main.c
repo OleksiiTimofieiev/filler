@@ -386,22 +386,31 @@ void	init_structure(t_f *f)
 	f->list = NULL;
 }
 
-t_coord	*get_link(t_f *f) // finish it;
+t_coord	*get_link(t_f *f)
 {
 	double	min;
 	int 	index;
+	t_coord	*head1;
 
-	min = f->list->distance;
-	while (f->list)
+	index = 0;
+	head1 = f->list;
+	min = head1->distance;
+	index = head1->index;
+	while (head1)
 	{
-		if (f->list->distance < min)
+		if (head1->distance < min)
 		{
-			min = f->list->distance;
-			printf("Distance->%f\n", f->list->distance);
+			min = head1->distance;
+			index = head1->index;
 		}
-		if (f->list->index == index)
-			return (f->list);
-		f->list = f->list->next;
+		head1 = head1->next;
+	}
+	head1 = f->list;
+	while (head1)
+	{
+		if (head1->index == index)
+			return (head1);
+		head1 = head1->next;
 	}
 	return (NULL);
 }
@@ -415,10 +424,13 @@ void	place_figure(t_f *f) // give the necessary coordinates here;
 	t_coord *link;
 
 	i = 0;
-	link = get_link(f); // 1. return a lowest one; // 2.a way to exit the program; else exit(0);
+	link = get_link(f); // 1. adopt to the requirements of the vm; // 2.a way to exit the program; else exit(0);
 
 	if (!link)
+	{
 		ft_putstr("No data.");
+		exit(0);
+	}
 
 	a = link->x;
 	b = link->y;
@@ -585,6 +597,7 @@ void	analyze(t_f *f)
 	// 	f->o_dots = f->o_dots->next;
 	// }
 	init_list(f);
+	// ft_putchar('1');
 	place_figure(f);
 }
 
@@ -600,7 +613,7 @@ int		main(void)
 	// display_map(f);
 	// display_token(f);
 	analyze(&f); // save the dots in the ll for the future;
-	// display_map(f);
+	display_map(f);
 	// ft_printf("%d\n", 'O');
 
 	// display_map(f);
