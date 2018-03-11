@@ -386,7 +386,7 @@ void	init_structure(t_f *f)
 	f->list = NULL;
 }
 
-t_coord	*get_link(t_f *f, int index) // finish it;
+t_coord	*get_link(t_f *f) // finish it;
 {
 	double	min;
 	int 	index;
