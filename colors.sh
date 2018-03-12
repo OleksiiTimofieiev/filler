@@ -10,13 +10,13 @@
 #                                                                              #
 # **************************************************************************** #
 
-yellov=$(printf "\033[33mO\033[0m")
+yellow=$(printf "\033[33mO\033[0m")
 blue=$(printf "\033[34mX\033[0m")
-gren=$(printf "\033[32mo\033[0m")
+green=$(printf "\033[32mo\033[0m")
 red=$(printf "\033[35mx\033[0m")
 
-sed "s|O|$yellov|g" |
+sed "s|O|$yellow|g" |
 sed "s|X|$blue|g" |
 sed "s|x|$red|g" |
-sed "/^0.. /s|o|$gren|g" |
+sed "/^0.. /s|o|$green|g" |
 sed "s|fin|player|g" 
