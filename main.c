@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:34:49 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/12 22:33:51 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/12 22:35:08 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -274,8 +274,7 @@ int		get_final_dots(int i, int j, t_f *f)
 		j = buf;
 		while (b < f->t_cols)
 		{
-			if (f->map[i][j] == '.' && (f->token[a][b] == f->letter1
-			|| f->token[a][b] == f->letter2))
+			if (f->map[i][j] == '.' && (f->token[a][b] == f->letter1 || f->token[a][b] == f->letter2))
 				count++;
 			b++;
 			j++;
