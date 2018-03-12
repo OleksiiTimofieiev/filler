@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:34:49 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/12 22:11:27 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/12 22:19:09 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ t_coord	*new_node(int i, int j)
 	return (new);
 }
 
-t_coord	*get_opponent_dots(t_f *f)
+t_coord	*get_o_d(t_f *f)
 {
 	int		i;
 	int		j;
@@ -160,47 +160,6 @@ void	get_data(t_f *f)
 {
 	get_map(f);
 	get_token(f);
-}
-
-void	display_map(t_f f)
-{
-	int i;
-
-	i = 0;
-	ft_printf("\n");
-	while (i < f.m_rows)
-	{
-		ft_printf("%d", i);
-		ft_printf("-> %s\n", f.map[i++]);
-	}
-}
-
-void	d_display_map(t_f *f)
-{
-	int i;
-	int j;
-
-	i = 0;
-	ft_printf("\n");
-	while (i < f->m_rows)
-	{
-		j = 0;
-		printf("%d-> ", i);
-		while (j < f->m_cols)
-		{
-			if (f->map_analyze[i][j] == 46)
-				printf("%c ", '.');
-			else if (f->map_analyze[i][j] == f->o_letter1 || f->map_analyze[i][j] == f->o_letter2)
-				printf("%c ", 'X');
-			else if (f->map_analyze[i][j] == f->letter1 || f->map_analyze[i][j] == f->letter2)
-				printf("%c ", 'O');
-			else
-				printf("%.0f ", f->map_analyze[i][j]);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
 }
 
 void	display_token(t_f f)
@@ -323,7 +282,8 @@ int		get_final_dots(int i, int j, t_f *f)
 		j = buf;
 		while (b < f->t_cols)
 		{
-			if (f->map[i][j] == '.' && (f->token[a][b] == f->letter1 || f->token[a][b] == f->letter2))
+			if (f->map[i][j] == '.' && (f->token[a][b] == f->letter1
+			|| f->token[a][b] == f->letter2))
 				count++;
 			b++;
 			j++;
@@ -378,7 +338,6 @@ t_coord	*get_link(t_f *f)
 	int		index;
 	t_coord	*head1;
 
-	index = 0;
 	head1 = f->list;
 	if (head1 == NULL)
 	{
@@ -408,7 +367,7 @@ t_coord	*get_link(t_f *f)
 
 void	place_figure(t_f *f)
 {
-	int i;
+	int		i;
 	t_coord *link;
 
 	i = 0;
@@ -431,16 +390,16 @@ double	get_calculations2(t_coord *list, t_f *f)
 {
 	double	sum;
 	double	n;
-	t_coord *opponent_dots;
+	t_coord *o_d;
 
-	opponent_dots = f->o_dots;
+	o_d = f->o_dots;
 	sum = 0;
 	n = 0;
-	while (opponent_dots)
+	while (o_d)
 	{
-		sum += d_abs(list->x, opponent_dots->x) + d_abs(list->y, opponent_dots->y);
+		sum += d_abs(list->x, o_d->x) + d_abs(list->y, o_d->y);
 		n++;
-		opponent_dots = opponent_dots->next;
+		o_d = o_d->next;
 	}
 	return (sum / n);
 }
@@ -448,8 +407,8 @@ double	get_calculations2(t_coord *list, t_f *f)
 void	get_distance_beetween_valid_dot_and_dots_of_the_opponent(t_f *f)
 {
 	t_coord *valid_dots;
-	valid_dots = f->list;
 
+	valid_dots = f->list;
 	while (valid_dots)
 	{
 		valid_dots->distance = get_calculations2(valid_dots, f);
@@ -460,7 +419,7 @@ void	get_distance_beetween_valid_dot_and_dots_of_the_opponent(t_f *f)
 void	analyze(t_f *f)
 {
 	f->list = valid_dots(f);
-	f->o_dots = get_opponent_dots(f);
+	f->o_dots = get_o_d(f);
 	init_list(f);
 	get_distance_beetween_valid_dot_and_dots_of_the_opponent(f);
 	place_figure(f);
@@ -475,9 +434,7 @@ int		main(void)
 	while (1)
 	{
 		get_data(&f);
-		// system("leaks --quiet otimofie.filler");
 		analyze(&f);
 	}
-
 	return (0);
 }
