@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:34:49 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/12 13:05:09 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/12 14:10:53 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -710,5 +710,6 @@ int		main(void)
 // *.
 // *.
 
+// 1. ./filler_vm -f ./maps/map01 -p2 ./players/carli.filler -p1 ./players/otimofie.filler
 // ./filler_vm -f ./maps/map00 -p1 ./players/carli.filler -p2 ./players/otimofie.filler
 // ./filler_vm -f ./maps/map01 -p2 ./players/carli.filler -p1 ./players/otimofie.filler
