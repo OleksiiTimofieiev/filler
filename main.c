@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:34:49 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/12 22:22:50 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/12 22:26:52 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,21 @@ t_coord	*new_node(int i, int j)
 	return (new);
 }
 
+void	iteration_o_dots(int i, int j, t_coord **head, t_coord **current)
+{
+	if (!(*current))
+	{
+		*current = new_node(i, j);
+		*head = *current;
+	}
+	else
+	{
+		while ((*current)->next)
+			*current = (*current)->next;
+		(*current)->next = new_node(i, j);
+	}
+}
+
 t_coord	*get_o_d(t_f *f)
 {
 	int		i;
@@ -137,17 +152,7 @@ t_coord	*get_o_d(t_f *f)
 		{
 			if (f->map[i][j] == f->o_letter1 || f->map[i][j] == f->o_letter2)
 			{
-				if (!(current))
-				{
-					current = new_node(i, j);
-					head = current;
-				}
-				else
-				{
-					while ((current)->next)
-						current = (current)->next;
-					(current)->next = new_node(i, j);
-				}
+				iteration_o_dots(i, j, &head, &current);
 			}
 			j++;
 		}
@@ -160,19 +165,6 @@ void	get_data(t_f *f)
 {
 	get_map(f);
 	get_token(f);
-}
-
-void	display_token(t_f f)
-{
-	int i;
-
-	i = 0;
-	ft_printf("\n");
-	while (i < f.t_rows)
-	{
-		ft_printf("%d", i);
-		ft_printf("-> %s\n", f.token[i++]);
-	}
 }
 
 int		get_dots_quantity(t_f *f)
