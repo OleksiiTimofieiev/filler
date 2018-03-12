@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:34:49 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/12 10:48:00 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/12 12:31:14 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	get_players(t_f *f) // chek with bot if i need 2 iterations;
 
 	i = 0;
 	line = NULL;
-	while (i < 2)
+	while (i < 1)
 	{
 		get_next_line(0, &line);
 		if (ft_strstr(line, "otimofie") != NULL)
@@ -64,7 +64,7 @@ void	get_map(t_f *f)
 		get_next_line(0, &line);
 		f->map[i++] = ft_strdup(line + 4);
 	}
-	free(line);
+	// free(line);
 }
 
 void	mod_token(t_f *f)
@@ -105,7 +105,7 @@ void	get_token(t_f *f)
 		get_next_line(0, &line);
 		f->token[i++] = ft_strdup(line);
 	}
-	free(line);
+	// free(line);
 	mod_token(f);
 }
 
@@ -162,8 +162,11 @@ t_coord	*get_opponent_dots(t_f *f)
 
 void	get_data(t_f *f)
 {
+	// ft_putchar('1');
 	get_map(f);
+	// ft_putchar('2');
 	get_token(f);
+	// ft_putchar('3');
 }
 
 void	display_map(t_f f)
@@ -388,19 +391,25 @@ void	init_structure(t_f *f)
 {
 	f->map = NULL;
 	f->token = NULL;
-	f->list = NULL;
-	f->o_dots = NULL;
 	f->map_analyze = NULL;
+	f->o_dots = NULL;
+	f->list = NULL;
 }
 
 t_coord	*get_link(t_f *f) // min or max ?; //check it out;
 {
+	// printf("%s\n", f ? "+" : "-");
 	double	min;
 	int 	index;
 	t_coord	*head1;
 
 	index = 0;
 	head1 = f->list;
+	if (head1 == NULL)
+	{
+		ft_printf("%d %d\n", 0, 0);
+		exit(0);
+	}
 	min = head1->distance; // max
 	index = head1->index;
 	while (head1)
@@ -413,7 +422,7 @@ t_coord	*get_link(t_f *f) // min or max ?; //check it out;
 		head1 = head1->next;
 	}
 	head1 = f->list;
-	printf("Index->%d\n", index);
+	// printf("Index->%d\n", index);
 	while (head1)
 	{
 		if (head1->index == index)
@@ -426,37 +435,43 @@ t_coord	*get_link(t_f *f) // min or max ?; //check it out;
 void	place_figure(t_f *f) // give the necessary coordinates here;
 {
 	int i;
-	int j;
-	int a;
-	int b;
+	// int j;
+	// int a;
+	// int b;
 	t_coord *link;
-
+	// ft_putstr("14");
 	i = 0;
 	link = get_link(f); // 1. adopt to the requirements of the vm; // 2.a way to exit the program; else exit(0);
-
+	// ft_putstr("15");
 	if (!link)
 	{
-		ft_putstr("No data.");
+		// ft_putstr("No data.");
+		ft_printf("%d %d\n", 0, 0);
 		exit(0);
 	}
-
-	a = link->x;
-	b = link->y;
-	// ft_putchar('4');
-	while (i < f->t_rows)
+	else
 	{
-		j = 0;
-		b = link->y;
-		while (j < f->t_cols)
-		{
-			if (f->map[a][b] != f->letter1 && f->map[a][b] != f->letter2)
-				f->map[a][b] = f->token[i][j];
-			b++;
-			j++;
-		}
-		a++;
-		i++;
+		// The following format must be used “X Y\n”.
+		ft_printf("%d %d\n", link->x, link->y);
 	}
+
+	// a = link->x;
+	// b = link->y;
+	// // ft_putchar('4');
+	// while (i < f->t_rows)
+	// {
+	// 	j = 0;
+	// 	b = link->y;
+	// 	while (j < f->t_cols)
+	// 	{
+	// 		if (f->map[a][b] != f->letter1 && f->map[a][b] != f->letter2)
+	// 			f->map[a][b] = f->token[i][j];
+	// 		b++;
+	// 		j++;
+	// 	}
+	// 	a++;
+	// 	i++;
+	// }
 }
 
 double	**copy_map_to_double(t_f *f)
@@ -593,22 +608,30 @@ void	analyze(t_f *f)
 {
 	// maybe I will need head in order to save the list 
 	// or have the internal variable wothout moving the main pointer to head
+	// ft_putchar('5');
 	f->list = valid_dots(f);
+	// ft_putchar('6');
 	// ft_putchar('1');
 	f->o_dots = get_opponent_dots(f);
+	// ft_putchar('7');
 	f->map_analyze = copy_map_to_double(f);
 	// d_display_map(f);
+	// ft_putchar('8');
 	rate_the_cell_of_the_map(f);
-	d_display_map(f);
+	// ft_putchar('9');
+	// d_display_map(f);
 	get_valid_zone_weight(f);
+	// ft_putstr("10");
 	// while (f->o_dots)
 	// {
 	// 	ft_printf("Enemy -> %d %d\n", f->o_dots->x, f->o_dots->y);
 	// 	f->o_dots = f->o_dots->next;
 	// }
 	init_list(f);
+	// ft_putstr("11");
 	// ft_putchar('1');
 	place_figure(f);
+	// ft_putstr("77");
 }
 
 
@@ -619,11 +642,16 @@ int		main(void)
 	init_structure(&f);
 	get_players(&f);
 
-	get_data(&f);
+
+	while (1)
+	{
+		get_data(&f);
+		// ft_putchar('4');
 	// display_map(f);
 	// display_token(f);
-	analyze(&f); // save the dots in the ll for the future;
-	display_map(f);
+		analyze(&f);
+	} // save the dots in the ll for the future;
+	// display_map(f);
 	// ft_printf("%d\n", 'O');
 
 	// display_map(f);
@@ -639,7 +667,6 @@ int		main(void)
 }
 
 // $$$ exec p1 : [otimofie]
-// $$$ exec p2 : [user2]
 // Plateau 14 30:
 // 012345678901234567890123456789
 // 000 ..............................
@@ -660,3 +687,27 @@ int		main(void)
 // .****.
 // **....
 // *.....
+
+// $$$ exec p1 : [otimofie]
+// Plateau 15 17:
+//     01234567890123456
+// 000 .................
+// 001 .................
+// 002 .................
+// 003 ....XXXXXXX......
+// 004 ...XXXXXXXXXXX...
+// 005 .xXXXXXXXXXXXXX..
+// 006 XxXXXXXXXXXXXXXX.
+// 007 XXXXXOOOOOXXXXXXX
+// 008 XXOOOOOOOOXXXXXXX
+// 009 XXXOOOOOOXXXXXXXX
+// 010 XXXXOOOOOOOXXXXXX
+// 011 XOOXOOOOOOOOOXXXX
+// 012 OOOOOOOOOOOOOOXOO
+// 013 OOOOOOOOOOOOOOOOO
+// 014 OOOOOOOOOOOOOOOOO
+// Piece 2 2:
+// *.
+// *.
+
+// ./filler_vm -f ./maps/map00 -p1 ./players/carli.filler -p2 ./players/otimofie.filler

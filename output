@@ -1,0 +1,9 @@
+# -------------- VM  version 1.1 ------------- #
+#                                              #
+# 42 / filler VM Developped by: Hcao - Abanlin #
+#                                              #
+# -------------------------------------------- #
+launched ./resources/players/otimofie.filler
+$$$ exec p1 : [./resources/players/otimofie.filler]
+error:
+bad player
