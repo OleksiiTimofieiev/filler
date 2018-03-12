@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:34:49 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/12 17:41:03 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/12 19:29:12 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -376,7 +376,7 @@ t_coord	*valid_dots(t_f *f)
 				if (get_final_dots(i, j, f) == 1)
 				{
 					// ft_putchar('1');
-					// ft_printf("%s%d%s %s%d%s\n", CYAN, i, RESET, YELLOW, j, RESET);
+					ft_printf("%s%d%s %s%d%s\n", CYAN, i, RESET, YELLOW, j, RESET);
 					iteration_dots(i, j, &head, &current);
 				}
 			}
@@ -638,6 +638,58 @@ void	get_valid_zone_weight(t_f *f)
 	}
 }
 
+double get_quantity_of_free_dots_above(t_f *f)
+{
+	int i;
+	int j;
+	double count;
+
+	i = 0;
+	// j = 0;
+	count = 0;
+	while (i < (f->m_rows / 2)) // 15 or 14
+	{
+		j = 0;
+		while (j < f->m_cols)
+		{
+			if (f->map[i][j] == 46)
+			{
+				// ft_printf("%d %d\n", i, j);
+				count++;
+			}
+			// ft_printf("%c", f->map[i][j]);
+			j++;
+		}
+		ft_printf("\n");
+		i++;
+	}
+	// printf("rows->, %d count->%f\n", f->m_rows / 2, count);
+	return (count);
+}
+
+double get_quantity_of_free_dots_below(t_f *f)
+{
+	int i;
+	int j;
+	double count;
+
+	i = f->m_rows - f->m_rows / 2;
+	j = f->m_cols;
+	count = 0;
+	while (i < f->m_rows)
+	{
+		j = 0;
+		while (j < f->m_cols)
+		{
+			if (f->map[i][j] == '.')
+				count++;
+			j++;
+		}
+		i++;
+	}
+	return (count);
+}
+
 void	analyze(t_f *f)
 {
 	// maybe I will need head in order to save the list 
@@ -669,11 +721,16 @@ void	analyze(t_f *f)
 	// }
 	init_list(f);
 	get_distance_beetween_valid_dot_and_dots_of_the_opponent(f);
+	f->dots_above = get_quantity_of_free_dots_above(f);
+	f->dots_below = get_quantity_of_free_dots_below(f);
+	printf("%f %f\n", f->dots_above, f->dots_below);
 	// ft_putstr("11");
 	// ft_putchar('1');
 	place_figure(f);
 	// ft_putstr("77");
 }
+
+
 
 
 int		main(void)
