@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:34:49 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/12 17:14:28 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/12 16:35:36 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -553,11 +553,6 @@ void	rate_the_cell_of_the_map(t_f *f)
 	}
 }
 
-// void	get_distance_beetween_valid_dot_and_dots_of_the_opponent(t_f *f)
-// {
-	
-// }
-
 double	get_list_weight(t_f *f, int x, int y)
 {
 	int i;
@@ -622,7 +617,7 @@ void	analyze(t_f *f)
 	f->map_analyze = copy_map_to_double(f);
 	// ft_putchar('8');
 	rate_the_cell_of_the_map(f);
-	// d_display_map(f);
+	d_display_map(f);
 	// d_display_map(f);
 	// ft_putchar('9');
 	get_valid_zone_weight(f);
