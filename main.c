@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:34:49 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/12 22:19:09 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/12 22:22:50 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -332,6 +332,15 @@ void	init_structure(t_f *f)
 	f->list = NULL;
 }
 
+void	get_link_helper(t_coord *list)
+{
+	if (list == NULL)
+	{
+		ft_printf("%d %d\n", 0, 0);
+		exit(0);
+	}
+}
+
 t_coord	*get_link(t_f *f)
 {
 	double	min;
@@ -339,11 +348,7 @@ t_coord	*get_link(t_f *f)
 	t_coord	*head1;
 
 	head1 = f->list;
-	if (head1 == NULL)
-	{
-		ft_printf("%d %d\n", 0, 0);
-		exit(0);
-	}
+	get_link_helper(head1);
 	min = head1->distance;
 	index = head1->index;
 	while (head1)
