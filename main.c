@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:34:49 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/12 22:35:08 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/12 22:37:54 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -256,6 +256,14 @@ void	iteration_dots(int i, int j, t_coord **head, t_coord **current)
 	}
 }
 
+int		h_h(int a, int b, t_f *f)
+{
+	if (f->token[a][b] == f->letter1 || f->token[a][b] == f->letter2)
+		return (1);
+	else
+		return (0);
+}
+
 int		get_final_dots(int i, int j, t_f *f)
 {
 	int a;
@@ -274,7 +282,7 @@ int		get_final_dots(int i, int j, t_f *f)
 		j = buf;
 		while (b < f->t_cols)
 		{
-			if (f->map[i][j] == '.' && (f->token[a][b] == f->letter1 || f->token[a][b] == f->letter2))
+			if (f->map[i][j] == '.' && h_h(a, b, f))
 				count++;
 			b++;
 			j++;
