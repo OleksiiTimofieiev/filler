@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:36:23 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/12 19:11:48 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/12 19:38:37 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct		s_f
 	double			**map_analyze;
 	double			dots_above;
 	double			dots_below;
+	int				position_index;
 	t_coord			*o_dots;
 	t_coord			*list;
 }					t_f;

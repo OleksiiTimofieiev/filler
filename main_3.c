@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_2.c                                           :+:      :+:    :+:   */
+/*   main_3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:34:49 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/12 18:45:05 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/12 20:53:06 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -373,10 +373,10 @@ t_coord	*valid_dots(t_f *f)
 			if (subcheck(i, j, f) == get_dots_quantity(f))
 			{
 				// ft_printf("%d %d\n", i, j);
+					ft_putchar('1');
 				if (get_final_dots(i, j, f) == 1)
 				{
-					// ft_putchar('1');
-					// ft_printf("%s%d%s %s%d%s\n", CYAN, i, RESET, YELLOW, j, RESET);
+					ft_printf("%s%d%s %s%d%s\n", CYAN, i, RESET, YELLOW, j, RESET);
 					iteration_dots(i, j, &head, &current);
 				}
 			}
@@ -396,13 +396,27 @@ void	init_structure(t_f *f)
 	f->list = NULL;
 }
 
+t_coord *get_start_for_1_case(t_coord *list, t_f *f)
+{
+	t_coord *current = list;
+
+	while (current)
+	{
+		if (current->x >f->m_rows / 2)
+			return (current);
+		current = current->next;
+	}
+	return (current);
+}
+
 t_coord	*get_link(t_f *f) // min or max ?; //check it out;
 {
 	// printf("%s\n", f ? "+" : "-");
 	double	min;
 	int 	index;
 	t_coord	*head1;
-
+	t_coord	*start;
+	ft_putchar('2');
 	index = 0;
 	head1 = f->list;
 	if (head1 == NULL)
@@ -410,25 +424,80 @@ t_coord	*get_link(t_f *f) // min or max ?; //check it out;
 		ft_printf("%d %d\n", 0, 0);
 		exit(0);
 	}
+	ft_putchar('3');
+
 	min = head1->distance; // max
 	index = head1->index;
-	while (head1)
+	// ft_putchar('3');
+
+	if (f->position_index == 0)
 	{
-		// printf("%d %d %d %f\n", head1->index, head1->x, head1->y, head1->distance);
-		if (head1->distance < min) // max
+	// ft_putchar('4');
+
+		while (head1 && (head1->x <= f->m_rows / 2))
 		{
-			min = head1->distance; // max
-			index = head1->index;
+			// ft_putchar('5');
+
+			// printf("%d %d %d %f\n", head1->index, head1->x, head1->y, head1->distance);
+			if (head1->distance < min) // max
+			{
+				min = head1->distance; // max
+				index = head1->index;
+			}
+			// ft_putchar('6');
+
+			head1 = head1->next;
 		}
-		head1 = head1->next;
+		// ft_putchar('7');
+
 	}
+	else if (f->position_index == 1)
+	{
+	// ft_putchar('8');
+
+		start = get_start_for_1_case(head1, f);
+		min = start->distance;
+
+		while (start)
+		{
+			// ft_putchar('9');
+
+			// printf("%d %d %d %f\n", start->index, start->x, start->y, start->distance);
+			if (start->distance < min) // max
+			{
+				min = start->distance; // max
+				index = start->index;
+				// ft_putstr("10");
+
+			}
+			start = start->next;
+				// ft_putstr("11");
+
+		}
+	}
+
+				// ft_putstr("12");
+
 	head1 = f->list;
+				// ft_putstr("13");
+
+		if (head1 == NULL)
+	{
+				ft_putstr("14");
+
+		ft_printf("%d %d\n", 0, 0);
+		exit(0);
+	}
 	// printf("Index->%d\n", index);
 	while (head1)
 	{
+				// ft_putstr("15");
+
 		if (head1->index == index)
 			return (head1);
 		head1 = head1->next;
+				// ft_putstr("16");
+
 	}
 	return (NULL);
 }
@@ -638,6 +707,81 @@ void	get_valid_zone_weight(t_f *f)
 	}
 }
 
+double get_quantity_of_free_dots_above(t_f *f)
+{
+	int i;
+	int j;
+	double count;
+
+	i = 0;
+	// j = 0;
+	count = 0;
+	while (i < (f->m_rows / 2)) // 15 or 14
+	{
+		j = 0;
+		while (j < f->m_cols)
+		{
+			if (f->map[i][j] == 46)
+			{
+				// ft_printf("%d %d\n", i, j);
+				count++;
+			}
+			// ft_printf("%c", f->map[i][j]);
+			j++;
+		}
+		// ft_printf("\n");
+		i++;
+	}
+	// printf("rows->, %d count->%f\n", f->m_rows / 2, count);
+	return (count);
+}
+
+double get_quantity_of_free_dots_below(t_f *f)
+{
+	int i;
+	int j;
+	double count;
+
+	i = f->m_rows - f->m_rows / 2;
+	j = f->m_cols;
+	count = 0;
+	while (i < f->m_rows)
+	{
+		j = 0;
+		while (j < f->m_cols)
+		{
+			if (f->map[i][j] == '.')
+				count++;
+			j++;
+		}
+		i++;
+	}
+	return (count);
+}
+
+int 	check_if_zere_any_valid_dots(t_f *f)
+{
+	int i;
+	int j;
+	double count;
+
+	i = f->m_rows - f->m_rows / 2;
+	j = f->m_cols;
+	count = 0;
+	while (i < f->m_rows)
+	{
+		j = 0;
+		while (j < f->m_cols)
+		{
+			if (f->map[i][j] == f->letter1 || f->map[i][j] == f->letter2)
+				count++;
+			j++;
+		}
+		i++;
+	}
+	return (count);
+}
+
 void	analyze(t_f *f)
 {
 	// maybe I will need head in order to save the list 
@@ -669,11 +813,21 @@ void	analyze(t_f *f)
 	// }
 	init_list(f);
 	get_distance_beetween_valid_dot_and_dots_of_the_opponent(f);
+	f->dots_above = get_quantity_of_free_dots_above(f);
+	f->dots_below = get_quantity_of_free_dots_below(f);
+
+	if (f->dots_above > f->dots_below)
+		f->position_index = 0; // <= 5
+	else if (f->dots_above < f->dots_below && check_if_zere_any_valid_dots(f) > 0) // > 5
+		f->position_index = 1;
+	// printf("%f %f\n", f->dots_above, f->dots_below);
 	// ft_putstr("11");
 	// ft_putchar('1');
 	place_figure(f);
 	// ft_putstr("77");
 }
+
+
 
 
 int		main(void)
@@ -730,26 +884,37 @@ int		main(void)
 // *.....
 
 // $$$ exec p1 : [otimofie]
-// Plateau 15 17:
-//     01234567890123456
-// 000 .................
-// 001 .................
-// 002 .................
-// 003 ....XXXXXXX......
-// 004 ...XXXXXXXXXXX...
-// 005 .xXXXXXXXXXXXXX..
-// 006 XxXXXXXXXXXXXXXX.
-// 007 XXXXXOOOOOXXXXXXX
-// 008 XXOOOOOOOOXXXXXXX
-// 009 XXXOOOOOOXXXXXXXX
-// 010 XXXXOOOOOOOXXXXXX
-// 011 XOOXOOOOOOOOOXXXX
-// 012 OOOOOOOOOOOOOOXOO
-// 013 OOOOOOOOOOOOOOOOO
-// 014 OOOOOOOOOOOOOOOOO
-// Piece 2 2:
-// *.
-// *.
+// Plateau 24 40:
+//     0123456789012345678901234567890123456789
+// 000 ........................................
+// 001 ........................................
+// 002 ........................................
+// 003 ...O....................................
+// 004 ........................................
+// 005 ........................................
+// 006 ........................................
+// 007 ........................................
+// 008 ........................................
+// 009 ........................................
+// 010 ........................................
+// 011 ........................................
+// 012 ........................................
+// 013 ........................................
+// 014 ........................................
+// 015 ........................................
+// 016 ........................................
+// 017 ........................................
+// 018 ........................................
+// 019 ................................x.......
+// 020 ...............................xxxx.....
+// 021 ..............................xx........
+// 022 ........................................
+// 023 ........................................
+// Piece 4 7:
+// .......
+// .....**
+// .....**
+// .......
 
 // $$$ exec p2 : [otimofie]
 // Plateau 6 9:
