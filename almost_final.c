@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   almost_final.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:34:49 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/12 22:11:27 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/12 21:50:35 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,7 +237,7 @@ int		get_minimum_dots(t_f *f)
 	while (i < f->t_rows)
 	{
 		j = 0;
-		while (j < f->t_cols)
+		while (j <  f->t_cols)
 		{
 			if (f->token[i][j] == f->letter1 || f->token[i][j] == f->letter2)
 				count++;
@@ -375,7 +375,7 @@ void	init_structure(t_f *f)
 t_coord	*get_link(t_f *f)
 {
 	double	min;
-	int		index;
+	int 	index;
 	t_coord	*head1;
 
 	index = 0;
@@ -408,7 +408,7 @@ t_coord	*get_link(t_f *f)
 
 void	place_figure(t_f *f)
 {
-	int i;
+	int		i;
 	t_coord *link;
 
 	i = 0;
@@ -427,10 +427,31 @@ double	d_abs(int x, int y)
 	return (((x - y) < 0) ? (x - y) * (-1) : (x - y));
 }
 
+void	rate_the_cell_of_the_map(t_f *f)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (i < f->m_rows)
+	{
+		j = 0;
+		while (j < f->m_cols)
+		{
+			if (f->map_analyze[i][j] == 46 || f->map_analyze[i][j] == f->letter1 || f->map[i][j] == f->letter2)
+				f->map_analyze[i][j] = get_calculations(i, j, f);
+			else
+				;
+			j++;
+		}
+		i++;
+	}
+}
+
 double	get_calculations2(t_coord *list, t_f *f)
 {
-	double	sum;
-	double	n;
+	double sum;
+	double n;
 	t_coord *opponent_dots;
 
 	opponent_dots = f->o_dots;
@@ -447,14 +468,28 @@ double	get_calculations2(t_coord *list, t_f *f)
 
 void	get_distance_beetween_valid_dot_and_dots_of_the_opponent(t_f *f)
 {
-	t_coord *valid_dots;
-	valid_dots = f->list;
+	t_coord *valid_dots = f->list;
 
 	while (valid_dots)
 	{
 		valid_dots->distance = get_calculations2(valid_dots, f);
 		valid_dots = valid_dots->next;
 	}
+}
+
+void	get_valid_zone_weight(t_f *f)
+{
+	t_coord *current;
+
+	current = f->list;
+	while (current)
+	{
+		current->distance = get_list_weight(f, current->x, current->y);
+		current = current->next;
+	}
+	current = f->list;
+	while (current)
+		current = current->next;
 }
 
 void	analyze(t_f *f)
@@ -475,9 +510,7 @@ int		main(void)
 	while (1)
 	{
 		get_data(&f);
-		// system("leaks --quiet otimofie.filler");
 		analyze(&f);
 	}
-
 	return (0);
 }
