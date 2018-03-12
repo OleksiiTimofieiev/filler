@@ -12,7 +12,9 @@
 
 - visualize;
 - uprade the algo;
-Ideas
+- vin carli little and middle->dont nearest/farest;
+
+Ideas:
 
 - get clear with memory leaks;
 - leaks for a concrete function;
