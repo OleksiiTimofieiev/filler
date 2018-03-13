@@ -10,13 +10,15 @@
 #                                                                              #
 # **************************************************************************** #
 
-yellov=$(printf "\033[33mO\033[0m")
-blue=$(printf "\033[34mX\033[0m")
+yellov=$(printf "😈 ")
+blue=$(printf "🎃 ")
 gren=$(printf "\033[32mo\033[0m")
 red=$(printf "\033[35mx\033[0m")
+neutral=$(printf "💀 ")
 
 sed "s|O|$yellov|g" |
 sed "s|X|$blue|g" |
 sed "s|x|$red|g" |
 sed "/^0.. /s|o|$gren|g" |
+sed "s|\.|$neutral|g" | 
 sed "s|fin|player|g" 

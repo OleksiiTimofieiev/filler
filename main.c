@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:34:49 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/12 22:37:54 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/13 15:22:44 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -326,7 +326,6 @@ void	init_structure(t_f *f)
 {
 	f->map = NULL;
 	f->token = NULL;
-	f->map_analyze = NULL;
 	f->o_dots = NULL;
 	f->list = NULL;
 }
@@ -420,6 +419,22 @@ void	get_distance_beetween_valid_dot_and_dots_of_the_opponent(t_f *f)
 	}
 }
 
+void	free_list(t_coord **list)
+{
+	t_coord *ptr;
+	t_coord *next;
+
+	ptr = *list;
+	while (ptr)
+	{
+		next = ptr->next;
+		free(ptr);
+		ptr = next;
+	} 
+	free(list);
+	list = NULL;
+}
+
 void	analyze(t_f *f)
 {
 	f->list = valid_dots(f);
@@ -429,16 +444,30 @@ void	analyze(t_f *f)
 	place_figure(f);
 }
 
+void	free_array(char** array, int row) 
+{
+    int i;
+
+    i = 0;
+    while (i < row)
+        free(array[i++]);
+    free(array);
+}
+
+
 int		main(void)
 {
 	t_f f;
 
 	init_structure(&f);
 	get_players(&f);
+
 	while (1)
 	{
 		get_data(&f);
 		analyze(&f);
+		free_array(f.token, f.t_rows);
+		free_array(f.map, f.m_rows);		
 	}
 	return (0);
 }
