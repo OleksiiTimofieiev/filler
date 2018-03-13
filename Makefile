@@ -6,7 +6,7 @@
 #    By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/04 15:21:18 by otimofie          #+#    #+#              #
-#    Updated: 2018/03/05 13:11:50 by otimofie         ###   ########.fr        #
+#    Updated: 2018/03/13 15:46:52 by otimofie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,9 @@ NAME = otimofie.filler
 
 LIB = filler.a
 
-SRCS = main.c
+SRCS = main.c \
+		main1.c \
+		main_2.c \
 
 HEADER = filler.h
 
