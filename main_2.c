@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 15:45:45 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/13 15:50:13 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/13 16:09:16 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	init_list(t_f *f)
 	}
 }
 
-void	iteration_dots(int i, int j, t_coord **head, t_coord **current)
+void	i_dots(int i, int j, t_coord **head, t_coord **current)
 {
 	if (!(*current))
 	{
@@ -99,4 +99,3 @@ int		h_h(int a, int b, t_f *f)
 	else
 		return (0);
 }
-

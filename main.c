@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/04 14:34:49 by otimofie          #+#    #+#             */
-/*   Updated: 2018/03/13 15:40:45 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/03/13 16:03:52 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,13 +113,12 @@ int		main(void)
 
 	init_structure(&f);
 	get_players(&f);
-
 	while (1)
 	{
 		get_data(&f);
 		analyze(&f);
 		free_array(f.token, f.t_rows);
-		free_array(f.map, f.m_rows);		
+		free_array(f.map, f.m_rows);
 	}
 	return (0);
 }
